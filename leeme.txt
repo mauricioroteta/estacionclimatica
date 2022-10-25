@@ -1,0 +1,19 @@
+# estacionclimatica
+Clima
+
+Pagina web para conocer el pronostico del tiempo para curso javascript de CoderHouse
+Se consumen 2 servicios Web:
+- open-meteo : devuelve el clima y pronóstico del tiempo enviando como parametro la latitud y longitud (obtenida por navigator.geolocation.getCurrentPosition())
+- https://nominatim.openstreetmap.org/ui/reverse.html : devuelve la ciudad de una latitud y longitud
+
+Objetivo:
+- Mostrar la situacion climatica de mi ubicacion (temperatura, viento (direccion y velocidad), nombre de la localidad, nubocidad, etc.
+- Mostrar pronostico  extendido
+- Mostrar pronostico por hora
+- Mostrar alertas meteorologicos
+- Si me alcanza el tiempo, comparar la situacion climatica y pronosticos con datos historicos
+
+
+Preentrega 01: 
+Armé una pagina basica con Bootstrap donde se muestra una card con los datos climaticos del dia y otra con el pronostico extendido a 5 dias
+El proyecto es funcional pero me falta determinar la imagen de día de acuerdo a la situacion climática y pronosticos
