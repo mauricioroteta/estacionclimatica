@@ -47,16 +47,11 @@ function ObtenerNombreLocalidad(lat, long){
 function CompletarDias(){
     var today = new Date();
     var options = { weekday: 'short'};
-    today.setDate(today.getDate() + 1);
-    document.getElementById('NombreDia1').textContent = today.toLocaleString('es-LA', options)
-    today.setDate(today.getDate() + 1);
-    document.getElementById('NombreDia2').textContent = today.toLocaleString('es-LA', options)
-    today.setDate(today.getDate() + 1);
-    document.getElementById('NombreDia3').textContent = today.toLocaleString('es-LA', options)
-    today.setDate(today.getDate() + 1);
-    document.getElementById('NombreDia4').textContent = today.toLocaleString('es-LA', options)
-    today.setDate(today.getDate() + 1);
-    document.getElementById('NombreDia5').textContent = today.toLocaleString('es-LA', options)
+    var i 
+    for (i=1;i<=5;i+=1) { 
+        today.setDate(today.getDate() + 1);
+        document.getElementById('NombreDia' + i).textContent = today.toLocaleString('es-LA', options)
+    }
 }
 
 // Obtiene proostico del tiempo para las coordenadas
