@@ -25,7 +25,11 @@ body{
     }
 }
 .temp{
-    font-size: 4rem;
+    font-size: 3.5rem;
+    color: rgb(0, 0, 0);
+}
+.viento, .localidad{
+    font-size: 0.8rem;
     color: rgb(0, 0, 0);
 }
 .card-1{
