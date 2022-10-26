@@ -9,29 +9,22 @@ class Ciudad{
 
 // Calculo de la posicion del viento de grados
 function direccionDelViento(n){
-    let direccion
-    if ((n > 337,5) || (n < 22,5)){
+    if ((n > 337.5) || (n < 22.5)){
         return 'Norte'
-    }
-    if (n > 292,5){
+    } else if (n > 292.5){
         return 'Noroeste'
-    }
-    if (n > 247,5){
+    } else if (n > 247.5){
         return 'Oeste'
-    }
-    if (n > 202,5){
+    } else if (n > 202.5){
         return 'Sudoeste'
-    }
-    if (n > 157,5){
+    } else if (n > 157.5){
         return 'Sur'
-    }
-    if (n > 111,5){
-        return 'Sudeste'
-    }
-    if (n > 202,5){
+    } else if (n > 111.5){
+        return  'Sudeste'
+    } else if (n > 202.5){
         return 'Este'
-    }
-    if (n > 22,5){
+    } else 
+    if (n > 22.5){
         return 'Noreste'
     }
 }
