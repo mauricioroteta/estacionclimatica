@@ -7,7 +7,7 @@ Se consumen 2 servicios Web:
 - https://nominatim.openstreetmap.org/ui/reverse.html : devuelve la ciudad de una latitud y longitud
 
 Objetivo:
-- Mostrar la situacion climatica de mi ubicacion (temperatura, viento (direccion y velocidad), nombre de la localidad, nubocidad, etc.
+- Mostrar la situacion climatica de mi ubicacion (temperatura, viento (direccion y velocidad), nombre de la localidad, nubosidad, etc.
 - Mostrar pronostico  extendido
 - Mostrar pronostico por hora
 - Mostrar alertas meteorologicos
