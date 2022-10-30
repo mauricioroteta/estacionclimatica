@@ -18,9 +18,9 @@ function nuvosidad(n){
         return 'img/37.png'
     } else if (n>40){
         return 'img/25.png'
-    } else if (n>30){
+    } else if (n>20){
         return 'img/19.png'
-    }else if (n>15){
+    }else if (n>10){
         return 'img/13.png'
     } else {
         return 'img/3.png'

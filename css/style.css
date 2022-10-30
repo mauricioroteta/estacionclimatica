@@ -53,18 +53,30 @@ body{
     .localidad{
         font-size: 0.75rem;
     }
+    
 }
 .img-fluid{
     float: right;
-    width: 65%;
+    width: 60%;
     display: flex;
     align-items: center;
 }
 .row2 .img-fluid{
     margin: 10% 0;
     opacity: 0.5;
-    width: 40%;
+    width: 50%;
 }
+
+@media only screen and (max-width: 1000px) {
+    .row2 .img-fluid{
+        margin: 10% 0;
+        opacity: 0.5;
+        width: 90%;
+    }
+}
+
+
+
 .card-2 .row{
     justify-content: center;
 }
@@ -103,7 +115,7 @@ body{
     margin: 5% 0 2.5rem;
 }
 .card-3 .row3{
-    margin: 5% 0 2.5rem;
+    margin: 10% 0 2.5rem;
 }
 .col{
     overflow: visible;
