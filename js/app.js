@@ -1,9 +1,29 @@
+class iconTiempo{
+    
+}
+
 class Ciudad{
     constructor (l, g){
         this.latitud = l;
         this.longitud = g;
         this.Nombre = '';
         this.temperatura = 0;
+    }
+}
+
+function nuvosidad(n){
+    if (n > 85){
+        return 'img/73.png'
+    } else if (n > 60){
+        return 'img/37.png'
+    } else if (n>40){
+        return 'img/25.png'
+    } else if (n>30){
+        return 'img/19.png'
+    }else if (n>15){
+        return 'img/13.png'
+    } else {
+        return 'img/3.png'
     }
 }
 
@@ -51,7 +71,7 @@ function CompletarDias(){
 function ObtenerPronostico(lat, long){
     obtenerPos()
     x = new Ciudad(lat, long)
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + x.latitud + '&longitude=' + x.longitud + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&current_weather=true&timezone=America%2FSao_Paulo')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + x.latitud + '&longitude=' + x.longitud + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
             console.log(json)
@@ -59,11 +79,52 @@ function ObtenerPronostico(lat, long){
             document.getElementById('viento').textContent = json.current_weather.windspeed + ' km/h - ' + direccionDelViento(parseInt(json.current_weather.winddirection))
             document.getElementById('localidad').textContent = ObtenerNombreLocalidad(x.latitud, x.longitud)
             CompletarDias()
+
+            const nuves = []
+
+            let rep = 0
+            let sumNuves = 0
+            let nuveAhora = 0
+            
+            let dia = json.hourly.time[0].substring(0, 10)
+
+            for (i in json.hourly.time){
+                if (dia == json.hourly.time[i].substring(0, 10)){
+                    if ((json.current_weather.time >= json.hourly.time[i]) && (json.current_weather.time <= json.hourly.time[i])){
+                        nuveAhora = json.hourly.cloudcover[i]
+                        //console.log(json.current_weather.time + ' comparado con ' + json.hourly.time[i] + ' = ' + json.hourly.cloudcover[i])
+                    }
+                    rep++
+                    sumNuves = sumNuves + json.hourly.cloudcover[i]
+                } else {
+                    nuves.push(sumNuves / rep)
+                    rep = 0
+                    dia = json.hourly.time[i].substring(0, 10)
+                    sumNuves = json.hourly.cloudcover[i]
+                }
+            }
+
+            document.getElementById('icnDia').src = nuvosidad(parseInt(nuveAhora))
+
             document.getElementById('tempDia1').textContent = json.daily.temperature_2m_max[0] + ' / ' + json.daily.temperature_2m_min[0]
+            document.getElementById('iconDia1').src = nuvosidad(parseInt(nuves[1]))
+            document.getElementById('precipDia1').textContent = json.daily.precipitation_sum[0] + 'mm'
+
             document.getElementById('tempDia2').textContent = json.daily.temperature_2m_max[1] + ' / ' + json.daily.temperature_2m_min[1]
+            document.getElementById('iconDia2').src = nuvosidad(parseInt(nuves[2]))
+            document.getElementById('precipDia2').textContent = json.daily.precipitation_sum[1] + 'mm'
+
             document.getElementById('tempDia3').textContent = json.daily.temperature_2m_max[2] + ' / ' + json.daily.temperature_2m_min[2]
+            document.getElementById('iconDia3').src = nuvosidad(parseInt(nuves[3]))
+            document.getElementById('precipDia3').textContent = json.daily.precipitation_sum[2] + 'mm'
+
             document.getElementById('tempDia4').textContent = json.daily.temperature_2m_max[3] + ' / ' + json.daily.temperature_2m_min[3]
+            document.getElementById('iconDia4').src = nuvosidad(parseInt(nuves[4]))
+            document.getElementById('precipDia4').textContent = json.daily.precipitation_sum[3] + 'mm'
+
             document.getElementById('tempDia5').textContent = json.daily.temperature_2m_max[4] + ' / ' + json.daily.temperature_2m_min[4]
+            document.getElementById('iconDia5').src = nuvosidad(parseInt(nuves[5]))
+            document.getElementById('precipDia5').textContent = json.daily.precipitation_sum[4] + 'mm'
         })  
 }
 
