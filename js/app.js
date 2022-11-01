@@ -1,7 +1,3 @@
-class iconTiempo{
-    
-}
-
 class Ciudad{
     constructor (l, g){
         this.latitud = l;
@@ -9,6 +5,16 @@ class Ciudad{
         this.Nombre = '';
         this.temperatura = 0;
     }
+}
+
+function esDeDia(){
+    var hora = new Date();
+    var hours = hora.getHours();
+    console.log(hours)
+    if ((hours > 20) || (hours < 7)){
+        return false
+    }else  
+        return true
 }
 
 function nuvosidad(n){

@@ -55,12 +55,27 @@ body{
     }
     
 }
+
+@keyframes float {
+	0% {
+        transform: scale(1);
+	}
+	50% {
+        transform: scale(1.2);
+	}
+	100% {
+        transform: scale(1);
+	}
+}
 .img-fluid{
     float: right;
     width: 60%;
     display: flex;
     align-items: center;
+	animation: float 8s ease-in-out infinite;
 }
+
+
 .row2 .img-fluid{
     margin: 10% 0;
     opacity: 0.5;
