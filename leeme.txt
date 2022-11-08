@@ -19,5 +19,11 @@ Armé una pagina basica con Bootstrap donde se muestra una card con los datos cl
 El proyecto es funcional pero me falta determinar la imagen de día de acuerdo a la situacion climática y pronosticos
 
 Preentrega 02:
+Se crea objeto Ciudad (En proceso)
 Incorpora iconos
 Para determinar el icono del dia, revisa nuvosidad hora por hora de cada dia y establece un promedio
+Hacer jugar tambien los iconos de lluvia (leve, moderada o fuerte) con la nuvosidad (En proceso)
+Incorporacion de Maps() para traer las descripciones en español de WWO (estandar mundial)
+Hover en el cima diario para acceder a mas detalles (En proceso)
+Iconos dinamicos (modifica tamaño con transform: scale)
+Determina promedio de nuvosidad diaria porque la API no establece la nuvosidad como un dato de cada día.
