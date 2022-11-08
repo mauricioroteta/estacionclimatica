@@ -1,9 +1,9 @@
 class Ciudad{
     constructor (l, g){
-        this.latitud = l;
-        this.longitud = g;
-        this.Nombre = '';
-        this.temperatura = 0;
+        this._latitud = l;
+        this._longitud = g;
+        this._nombre = ObtenerNombreLocalidad(l, g)
+        this._temperatura = 0;
     }
 }
 
@@ -15,18 +15,18 @@ function esDeDia(){
         return false
     }else  
         return true
-}
+} 
 
 function nuvosidad(n){
     if (n > 85){
         return 'img/73.png'
     } else if (n > 60){
         return 'img/37.png'
-    } else if (n>40){
+    } else if (n > 40){
         return 'img/25.png'
-    } else if (n>20){
+    } else if (n > 20){
         return 'img/19.png'
-    }else if (n>10){
+    }else if (n > 10){
         return 'img/13.png'
     } else {
         return 'img/3.png'
@@ -60,7 +60,7 @@ function ObtenerNombreLocalidad(lat, long){
     .then(response => response.json())
     .then(json => {
         document.getElementById('localidad').textContent = json.address.state_district + " - " + json.address.state + ' - ' + json.address.country
-    })  
+    })
 }
 // Completa los dias de la semana en el pronostico semanal
 function CompletarDias(){
@@ -76,14 +76,15 @@ function CompletarDias(){
 // Obtiene proostico del tiempo para las coordenadas
 function ObtenerPronostico(lat, long){
     obtenerPos()
-    x = new Ciudad(lat, long)
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + x.latitud + '&longitude=' + x.longitud + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
+    const x = new Ciudad(lat, long)
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + x._latitud + '&longitude=' + x._longitud + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
             console.log(json)
             document.getElementById('temperaturaActual').textContent = json.current_weather.temperature + ' °C'
             document.getElementById('viento').textContent = json.current_weather.windspeed + ' km/h - ' + direccionDelViento(parseInt(json.current_weather.winddirection))
-            document.getElementById('localidad').textContent = ObtenerNombreLocalidad(x.latitud, x.longitud)
+            document.getElementById('localidad').textContent = x._nombre;
+            console.log(x.Nombre)
             CompletarDias()
 
             const nuves = []
@@ -110,7 +111,7 @@ function ObtenerPronostico(lat, long){
                 }
             }
 
-            document.getElementById('icnDia').src = nuvosidad(parseInt(nuveAhora))
+            document.getElementById('iconDia0').src = nuvosidad(parseInt(nuveAhora))
 
             document.getElementById('tempDia1').textContent = json.daily.temperature_2m_max[0] + ' / ' + json.daily.temperature_2m_min[0]
             document.getElementById('iconDia1').src = nuvosidad(parseInt(nuves[1]))
