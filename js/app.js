@@ -183,7 +183,7 @@ function ObtenerNombreLocalidad(lat, long){
     .then(response => response.json())
     .then(json => {
         console.log(json)
-        document.getElementById('localidad').textContent = json.address.town + " - " + json.address.state + ' - ' + json.address.country
+        document.getElementById('localidad').textContent = json.address.state_district + " - " + json.address.state + ' - ' + json.address.country
     })  
 }
 // Completa los dias de la semana en el pronostico semanal
