@@ -1,3 +1,105 @@
+let WWO = new Map();
+WWO.set(0,'Ningún     desarrollo     nuboso     fue observado u observable.');
+WWO.set(1,'Nubes en disolución o haciéndose menos desarrolladas.');
+WWO.set(2,'Estado  de  cielo  sin  cambios  en  su conjunto.');
+WWO.set(3,'Nubes  en  formación  o  en  vías  de desarrollo.');
+WWO.set(4,'Visibilidad reducida por humo, quemazón de maleza o de bosques, humos industriales o cenizas volcánicas.');
+WWO.set(5,'Bruma.');
+WWO.set(6,'Polvo en suspensión en el aire, abarcando gran extensión, no levantados por el viento en el lugar de la observación o en sus alrededores en el momento de la observación.');
+WWO.set(7,'Polvo o arena levantados por el viento en la estación o en sus alrededores en el momento de la observación, pero con ausencia de torbellino (s) de polvo o de arena bien desarrollado (s) sin tempestad de polvo o arena a la vista.');
+WWO.set(8,'Torbellino (s) de polvo o de arena bien desarrollado (s), observado (s) en la estación o en sus alrededores durante la hora precedente, o en el momento de la observación, pero sin tempestad de polvo o de arena.');
+WWO.set(9,'Tempestad de polvo o de arena a la vista en el momento de la observación, o en la estación misma durante la hora precedente.');
+WWO.set(10,'Neblina.');
+WWO.set(11,'Banco (s) delgado (s) de niebla o niebla helada en laestación, ya sea en tierra o en el mar, de un espesor no mayor de 2 metros sobre tierra o de 10 metros sobre el mar.');
+WWO.set(12,'Capa delgada de niebla, o de niebla helada, más o menos continuas, en la estación, ya sea en tierra o en el mar, de un espesor no mayor de 2 metros sobre tierra o de 10 metros sobre el mar.');
+WWO.set(13,'Relámpagos a la vista, sin oírse truenos.');
+WWO.set(14,'Precipitación a la vista, que no llega al suelo o a la superficie del mar.');
+WWO.set(15,'Precipitación a la vista, que llega al suelo o a la superficie del mar, pero distante (es decir, más de 5 Km) de la estación.');
+WWO.set(16,'Precipitaciones  que  llegan  al  suelo  o  a  la  superficie  del  mar  cerca  de  la estación, pero no en la estación misma.');
+WWO.set(17,'Tormenta (truenos, con relámpagos o sin ellos), pero sin precipitación en el momento de la observación.');
+WWO.set(18,'Tormenta (truenos, con relámpagos o sin ellos), pero sin precipitación en el momento de la observación.');
+WWO.set(19,'Tromba (s) terrestre (s) o marina (s) en la estación, o a la vista, durante la hora precedente o en el momento de la observación.');
+WWO.set(20,'Llovizna  (no  congelándose  o  nieve granulada).');
+WWO.set(21,'Lluvia (no congelándose).');
+WWO.set(22,'Nieve.');
+WWO.set(23,'Lluvia con nieve o granos de hielo.');
+WWO.set(24,'Llovizna o lluvia congelándose.');
+WWO.set(25,'Chaparrón (es) de lluvia.');
+WWO.set(26,'Chaparrón (es) de nieve o de lluvia y nieve.');
+WWO.set(27,'Chaparrón (es) de granizo, o de pedrisco, granizo blando, o de lluvia y granizo.');
+WWO.set(28,'Niebla o niebla helada.');
+WWO.set(29,'Tormenta (con precipitaciones o sin ellas).');
+WWO.set(30,'Ligera     o     moderada,     que     ha disminuido  en  el  curso  de  la  hora precedente');
+WWO.set(31,'Ligera o moderada, sin cambio apreciable en el curso de la hora precedente.');
+WWO.set(32,'Ligera     o     moderada,     que     ha comenzado,  o  ha  aumentado,  en  el curso de la hora precedente.');
+WWO.set(33,'Violenta, que ha disminuido en el curso de la hora precedente.');
+WWO.set(34,'Violenta, sin cambio apreciable en el curso de la hora precedente.');
+WWO.set(35,'Violenta, que ha comenzado, o ha aumentando, en el curso de la hora precedente.');
+WWO.set(36,'Ventisca débil o moderada, generalmente baja (por debajo del nivel de la visual del observador).');
+WWO.set(37,'Ventisca fuerte, generalmente baja (por debajo del nivel de la visual del observador).');
+WWO.set(38,'Ventisca débil o moderada, generalmente elevada (por encima del nivel de la visual del observador).');
+WWO.set(39,'Ventisca fuerte, generalmente elevada (por encima del nivel de la visual del observador).');
+WWO.set(40,'Niebla o niebla helada a la distancia en el momento de la observación; la niebla o niebla helada se extiende hasta el nivel superior al del observador. No hubo niebla o niebla helada en la estación en el curso de la hora precedente.');
+WWO.set(41,'Niebla, o niebla helada en bancos.');
+WWO.set(42,'Niebla, o niebla helada, cielo visible.');
+WWO.set(43,'Niebla, o niebla helada, cielo invisible.');
+WWO.set(44,'Niebla, o niebla helada, cielo visible.');
+WWO.set(45,'Niebla, o niebla helada, cielo invisible.');
+WWO.set(46,'Niebla, o niebla helada, cielo visible.');
+WWO.set(47,'Niebla, o niebla helada, cielo invisible.');
+WWO.set(48,'Niebla, depositando cenceñada, cielo visible.');
+WWO.set(49,'Niebla, depositando cenceñada, cielo invisible.');
+WWO.set(50,'Llovizna intermitente, no congelándose.');
+WWO.set(51,'Llovizna continua, no congelándose.');
+WWO.set(52,'Llovizna intermitente, no congelándose.');
+WWO.set(53,'Llovizna continua, no congelándose.');
+WWO.set(54,'Llovizna intermitente, no congelándose.');
+WWO.set(55,'Llovizna continua, no congelándose.');
+WWO.set(56,'Llovizna débil, congelándose.');
+WWO.set(57,'Llovizna moderada o fuerte (densa), congelándose.');
+WWO.set(58,'Llovizna y lluvia, débil.');
+WWO.set(59,'Llovizna y lluvia, moderada o fuerte.');
+WWO.set(60,'Lluvia intermitente, no congelándose.');
+WWO.set(61,'Lluvia continua, no congelándose.');
+WWO.set(62,'Lluvia intermitente, no congelándose.');
+WWO.set(63,'Lluvia continua, no congelándose.');
+WWO.set(64,'Lluvia intermitente, no congelándose.');
+WWO.set(65,'Lluvia continua, no congelándose.');
+WWO.set(66,'Lluvia débil, congelándose.');
+WWO.set(67,'Lluvia moderada o fuerte, congelándose.');
+WWO.set(68,'Lluvia y nieve o llovizna y nieve, débil.');
+WWO.set(69,'Lluvia y nieve o llovizna y nieve, moderada o fuerte.');
+WWO.set(70,'Caída intermitente de copos de nieve.');
+WWO.set(71,'Caída continua de copos de nieve.');
+WWO.set(72,'Caída intermitente de copos de nieve.');
+WWO.set(73,'Caída continua de copos de nieve.');
+WWO.set(74,'Caída intermitente de copos de nieve.');
+WWO.set(75,'Caída continua de copos de nieve.');
+WWO.set(76,'Prismas de hielo (con niebla o sin ella).');
+WWO.set(77,'Nieve granulada (con niebla o sin ella).');
+WWO.set(78,'Cristales aislados de nieve en forma de estrellas (con niebla o sin ella).');
+WWO.set(79,'Granos de hielo.');
+WWO.set(80,'Chaparrón (es) de lluvia, débil (es).');
+WWO.set(81,'Chaparrón (es) de lluvia, moderado (s) o fuerte (s).');
+WWO.set(82,'Chaparrón (es) de lluvia, violento (s).');
+WWO.set(83,'Chaparrón (es) de lluvia y nieve, débil (es).');
+WWO.set(84,'Chaparrón (es) de lluvia y nieve, moderado (s) o fuerte (s).');
+WWO.set(85,'Chaparrón (es) de nieve, débil (es).');
+WWO.set(86,'Chaparrón (es) de nieve, moderado (s) o fuerte (s).');
+WWO.set(87,'Chaparrón (es) de granizo o de granizo blando, con lluvia o sin ella o lluvia con nieve, débil (es).');
+WWO.set(88,'Chaparrón (es) de granizo o de granizo blando, con lluvia o sin ella o lluvia con nieve, moderado (s) o fuerte (s).');
+WWO.set(89,'Chaparrón (es) de pedrisco con lluvia, o sin ella, con nieve, débil (es), sin truenos.');
+WWO.set(90,'Chaparrón (es) de pedrisco con lluvia, o    sin    ella    o    lluvia    con    nieve, moderado (s) o fuerte (s), sin truenos.');
+WWO.set(91,'Lluvia débil en el momento de la observación.');
+WWO.set(92,'Lluvia   moderada   o   fuerte   en   el momento de la observación');
+WWO.set(93,'Caída débil de nieve o agua con nieve o granizo, granizo blando o pedrisco en el momento de la observación.');
+WWO.set(94,'Caída moderada o fuerte de nieve o agua con nieve o granizo blando o pedrisco en el momento de la observación.');
+WWO.set(95,'Tormenta débil o moderada sin granizo, granizo blando o pedrisco, pero con lluvia y/o nieve en el momento de la observación.');
+WWO.set(96,'Tormenta débil o moderada con granizo, granizo blando o pedrisco en el momento de la observación.');
+WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluvia y/o nieve en el momento de la observación.');
+WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
+WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
+
 class DatosDia {
     constructor (i, datos){
         this._dia = datos.apparent_time[i];
@@ -12,13 +114,14 @@ class DatosDia {
 }
 
 class Ciudad{
-    constructor (l, g, j){
+    constructor (l, g, j, WWO){
         this._latitud = l;
         this._longitud = g;
         this._nombre = ObtenerNombreLocalidad(l, g);
         this._temperatura = j.current_weather.temperature;
         this._vientoDireccion = j.current_weather.winddirection;
         this._vientoVelocidad = j.current_weather.windspeed;
+        this._tiempoResumido = WWO.get(parseInt(j.current_weather.weathercode))
         this._nuvosidad = 
         this._dias = [];
     }
@@ -95,14 +198,15 @@ function CompletarDias(){
 
 // Obtiene proostico del tiempo para las coordenadas
 function ObtenerPronostico(lat, long){
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
-            const x = new Ciudad(lat, long, json)
+            const x = new Ciudad(lat, long, json, WWO)
             console.log(json)
             document.getElementById('temperaturaActual').textContent = x._temperatura + ' °C'
             document.getElementById('viento').textContent = x._vientoVelocidad + ' km/h - ' + direccionDelViento(parseInt(x._vientoDireccion))
-            document.getElementById('localidad').textContent = x._nombre //ObtenerNombreLocalidad(x._latitud, x._longitud)
+            document.getElementById('localidad').textContent = x._nombre//ObtenerNombreLocalidad(x._latitud, x._longitud)
+            document.getElementById('resumen').textContent = x._tiempoResumido
             CompletarDias()
 
             const nuves = []

@@ -134,10 +134,14 @@ body{
 .card-3 .row3{
     margin: 10% 0 2.5rem;
 }
+
 .col{
     transition: all 0.3s ease 0s;
     overflow: visible;
 }
 .row{
     overflow: visible;
+}
+.Resumen0{
+    
 }
