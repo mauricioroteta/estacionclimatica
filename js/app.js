@@ -100,6 +100,7 @@ WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluv
 WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
 WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
 
+
 class DatosDia {
     constructor (i, datos){
         this._dia = datos.apparent_time[i];
