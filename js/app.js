@@ -1,26 +1,51 @@
-class iconTiempo{
-    
-}
-
-class Ciudad{
-    constructor (l, g){
-        this.latitud = l;
-        this.longitud = g;
-        this.Nombre = '';
-        this.temperatura = 0;
+class DatosDia {
+    constructor (i, datos){
+        this._dia = datos.apparent_time[i];
+        this._tempMax = datos.temperature_2m_max[i];
+        this._tempMin = datos.emperature_2m_min[i];
+        this._sunrise = datos.sunrise[i];
+        this._sunset = datos.sunset[i];
+        this._precipitaciones = datos.precipitation_sum[i];
+        this._sensacionTermicaMax = datos.apparent_temperature_max[i];
+        this._sensacionTermicaMin = datos.apparent_temperature_min[i];
     }
 }
 
-function nuvosidad(n){
+class Ciudad{
+    constructor (l, g, j){
+        this._latitud = l;
+        this._longitud = g;
+        this._nombre = ObtenerNombreLocalidad(l, g);
+        this._temperatura = j.current_weather.temperature;
+        this._vientoDireccion = j.current_weather.winddirection;
+        this._vientoVelocidad = j.current_weather.windspeed;
+        this._nuvosidad = 
+        this._dias = [];
+    }
+}
+
+function nuvosidad(n, p){
     if (n > 85){
-        return 'img/73.png'
+        if (p > 0){
+            return 'img/83.png'
+        } else
+        return 'img/43.png'
     } else if (n > 60){
+        if (p > 0){
+            return 'img/73.png'
+        } else
         return 'img/37.png'
-    } else if (n>40){
+    } else if (n > 40){
+        if (p > 0){
+            return 'img/72.png'
+        } else
         return 'img/25.png'
-    } else if (n>20){
+    } else if (n > 20){
+        if (p > 0){
+            return 'img/74.png'
+        } else
         return 'img/19.png'
-    }else if (n>10){
+    }else if (n > 10){
         return 'img/13.png'
     } else {
         return 'img/3.png'
@@ -53,7 +78,8 @@ function ObtenerNombreLocalidad(lat, long){
     fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + long)
     .then(response => response.json())
     .then(json => {
-        document.getElementById('localidad').textContent = json.address.state_district + " - " + json.address.state + ' - ' + json.address.country
+        console.log(json)
+        document.getElementById('localidad').textContent = json.address.town + " - " + json.address.state + ' - ' + json.address.country
     })  
 }
 // Completa los dias de la semana en el pronostico semanal
@@ -69,15 +95,14 @@ function CompletarDias(){
 
 // Obtiene proostico del tiempo para las coordenadas
 function ObtenerPronostico(lat, long){
-    obtenerPos()
-    x = new Ciudad(lat, long)
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + x.latitud + '&longitude=' + x.longitud + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
+            const x = new Ciudad(lat, long, json)
             console.log(json)
-            document.getElementById('temperaturaActual').textContent = json.current_weather.temperature + ' °C'
-            document.getElementById('viento').textContent = json.current_weather.windspeed + ' km/h - ' + direccionDelViento(parseInt(json.current_weather.winddirection))
-            document.getElementById('localidad').textContent = ObtenerNombreLocalidad(x.latitud, x.longitud)
+            document.getElementById('temperaturaActual').textContent = x._temperatura + ' °C'
+            document.getElementById('viento').textContent = x._vientoVelocidad + ' km/h - ' + direccionDelViento(parseInt(x._vientoDireccion))
+            document.getElementById('localidad').textContent = x._nombre //ObtenerNombreLocalidad(x._latitud, x._longitud)
             CompletarDias()
 
             const nuves = []
@@ -92,7 +117,6 @@ function ObtenerPronostico(lat, long){
                 if (dia == json.hourly.time[i].substring(0, 10)){
                     if ((json.current_weather.time >= json.hourly.time[i]) && (json.current_weather.time <= json.hourly.time[i])){
                         nuveAhora = json.hourly.cloudcover[i]
-                        //console.log(json.current_weather.time + ' comparado con ' + json.hourly.time[i] + ' = ' + json.hourly.cloudcover[i])
                     }
                     rep++
                     sumNuves = sumNuves + json.hourly.cloudcover[i]
@@ -107,24 +131,34 @@ function ObtenerPronostico(lat, long){
             document.getElementById('icnDia').src = nuvosidad(parseInt(nuveAhora))
 
             document.getElementById('tempDia1').textContent = json.daily.temperature_2m_max[0] + ' / ' + json.daily.temperature_2m_min[0]
-            document.getElementById('iconDia1').src = nuvosidad(parseInt(nuves[1]))
-            document.getElementById('precipDia1').textContent = json.daily.precipitation_sum[0] + 'mm'
-
+            document.getElementById('iconDia1').src = nuvosidad(parseInt(nuves[1]), parseInt(json.daily.precipitation_sum[0]))
+            if (json.daily.precipitation_sum[0] > 0){
+                document.getElementById('precipDia1').textContent = json.daily.precipitation_sum[0] + ' mm'
+            } else {document.getElementById('precipDia1').textContent = '--'}
+            
             document.getElementById('tempDia2').textContent = json.daily.temperature_2m_max[1] + ' / ' + json.daily.temperature_2m_min[1]
-            document.getElementById('iconDia2').src = nuvosidad(parseInt(nuves[2]))
-            document.getElementById('precipDia2').textContent = json.daily.precipitation_sum[1] + 'mm'
+            document.getElementById('iconDia2').src = nuvosidad(parseInt(nuves[2]), parseInt(json.daily.precipitation_sum[1]))
+            if (json.daily.precipitation_sum[1] > 0){
+                document.getElementById('precipDia2').textContent = json.daily.precipitation_sum[1] + ' mm'
+            } else {document.getElementById('precipDia2').textContent = '--'}
 
             document.getElementById('tempDia3').textContent = json.daily.temperature_2m_max[2] + ' / ' + json.daily.temperature_2m_min[2]
-            document.getElementById('iconDia3').src = nuvosidad(parseInt(nuves[3]))
-            document.getElementById('precipDia3').textContent = json.daily.precipitation_sum[2] + 'mm'
+            document.getElementById('iconDia3').src = nuvosidad(parseInt(nuves[3]), parseInt(json.daily.precipitation_sum[2]))
+            if (json.daily.precipitation_sum[2] > 0){
+                document.getElementById('precipDia3').textContent = json.daily.precipitation_sum[2] + ' mm'
+            } else {document.getElementById('precipDia3').textContent = '--'}
 
             document.getElementById('tempDia4').textContent = json.daily.temperature_2m_max[3] + ' / ' + json.daily.temperature_2m_min[3]
-            document.getElementById('iconDia4').src = nuvosidad(parseInt(nuves[4]))
-            document.getElementById('precipDia4').textContent = json.daily.precipitation_sum[3] + 'mm'
+            document.getElementById('iconDia4').src = nuvosidad(parseInt(nuves[4]), parseInt(json.daily.precipitation_sum[3]))
+            if (json.daily.precipitation_sum[3] > 0){
+                document.getElementById('precipDia4').textContent = json.daily.precipitation_sum[3] + ' mm'
+            } else {document.getElementById('precipDia4').textContent = '--'}
 
             document.getElementById('tempDia5').textContent = json.daily.temperature_2m_max[4] + ' / ' + json.daily.temperature_2m_min[4]
-            document.getElementById('iconDia5').src = nuvosidad(parseInt(nuves[5]))
-            document.getElementById('precipDia5').textContent = json.daily.precipitation_sum[4] + 'mm'
+            document.getElementById('iconDia5').src = nuvosidad(parseInt(nuves[5]), parseInt(json.daily.precipitation_sum[4]))
+            if (json.daily.precipitation_sum[4] > 0){
+                document.getElementById('precipDia5').textContent = json.daily.precipitation_sum[4] + ' mm'
+            } else {document.getElementById('precipDia5').textContent = '--'}
         })  
 }
 

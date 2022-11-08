@@ -35,6 +35,10 @@ body{
 .card-1{
     background: linear-gradient(to right, #ffffff 30%, rgba(0, 59, 252, 0.507));
 }
+.col:hover {
+    transform: scale(1.1);
+  }
+
 @media(max-width:767px)
 {
     .temp{
@@ -55,12 +59,27 @@ body{
     }
     
 }
+
+@keyframes float {
+	0% {
+        transform: scale(1);
+	}
+	50% {
+        transform: scale(1.2);
+	}
+	100% {
+        transform: scale(1);
+	}
+}
 .img-fluid{
     float: right;
     width: 60%;
     display: flex;
     align-items: center;
+	animation: float 8s ease-in-out infinite;
 }
+
+
 .row2 .img-fluid{
     margin: 10% 0;
     opacity: 0.5;
@@ -74,8 +93,6 @@ body{
         width: 90%;
     }
 }
-
-
 
 .card-2 .row{
     justify-content: center;
@@ -118,6 +135,7 @@ body{
     margin: 10% 0 2.5rem;
 }
 .col{
+    transition: all 0.3s ease 0s;
     overflow: visible;
 }
 .row{
