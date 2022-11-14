@@ -1,0 +1,602 @@
+[
+ {
+  "Codigo": 0,
+  "Descripcion": "Ningún desarrollo nuboso fue observado u observable.",
+  "iconDia": 3,
+  "iconNoche": 5
+ },
+ {
+  "Codigo": 1,
+  "Descripcion": "Nubes en disolución o haciéndose menos desarrolladas.",
+  "iconDia": 13,
+  "iconNoche": 14
+ },
+ {
+  "Codigo": 2,
+  "Descripcion": "Estado de cielo sin cambios en su conjunto.",
+  "iconDia": 3,
+  "iconNoche": 5
+ },
+ {
+  "Codigo": 3,
+  "Descripcion": "Nubes  en  formación  o  en  vías  de desarrollo.",
+  "iconDia": 13,
+  "iconNoche": 14
+ },
+ {
+  "Codigo": 4,
+  "Descripcion": "Visibilidad reducida por humo, quemazón de maleza o de bosques, humos industriales o cenizas volcánicas.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 5,
+  "Descripcion": "Bruma.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 6,
+  "Descripcion": "Polvo en suspensión en el aire, abarcando gran extensión, no levantados por el viento en el lugar de la observación o en sus alrededores en el momento de la observación.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 7,
+  "Descripcion": "Polvo o arena levantados por el viento en la estación o en sus alrededores en el momento de la observación, pero con ausencia de torbellino (s) de polvo o de arena bien desarrollado (s) sin tempestad de polvo o arena a la vista.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 8,
+  "Descripcion": "Torbellino (s) de polvo o de arena bien desarrollado (s), observado (s) en la estación o en sus alrededores durante la hora precedente, o en el momento de la observación, pero sin tempestad de polvo o de arena.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 9,
+  "Descripcion": "Tempestad de polvo o de arena a la vista en el momento de la observación, o en la estación misma durante la hora precedente.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 10,
+  "Descripcion": "Neblina.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 11,
+  "Descripcion": "Banco (s) delgado (s) de niebla o niebla helada en laestación, ya sea en tierra o en el mar, de un espesor no mayor de 2 metros sobre tierra o de 10 metros sobre el mar.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 12,
+  "Descripcion": "Capa delgada de niebla, o de niebla helada, más o menos continuas, en la estación, ya sea en tierra o en el mar, de un espesor no mayor de 2 metros sobre tierra o de 10 metros sobre el mar.",
+  "iconDia": 61,
+  "iconNoche": 61
+ },
+ {
+  "Codigo": 13,
+  "Descripcion": "Relámpagos a la vista, sin oírse truenos.",
+  "iconDia": 43,
+  "iconNoche": 43
+ },
+ {
+  "Codigo": 14,
+  "Descripcion": "Precipitación a la vista, que no llega al suelo o a la superficie del mar.",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 15,
+  "Descripcion": "Precipitación a la vista, que llega al suelo o a la superficie del mar, pero distante (es decir, más de 5 Km) de la estación.",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 16,
+  "Descripcion": "Precipitaciones  que  llegan  al  suelo  o  a  la  superficie  del  mar  cerca  de  la estación, pero no en la estación misma.",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 17,
+  "Descripcion": "Tormenta (truenos, con relámpagos o sin ellos), pero sin precipitación en el momento de la observación.",
+  "iconDia": 76,
+  "iconNoche": 76
+ },
+ {
+  "Codigo": 18,
+  "Descripcion": "Tormenta (truenos, con relámpagos o sin ellos), pero sin precipitación en el momento de la observación.",
+  "iconDia": 76,
+  "iconNoche": 76
+ },
+ {
+  "Codigo": 19,
+  "Descripcion": "Tromba (s) terrestre (s) o marina (s) en la estación, o a la vista, durante la hora precedente o en el momento de la observación.",
+  "iconDia": 76,
+  "iconNoche": 76
+ },
+ {
+  "Codigo": 20,
+  "Descripcion": "Llovizna  (no  congelándose  o  nieve granulada).",
+  "iconDia": 71,
+  "iconNoche": 71
+ },
+ {
+  "Codigo": 21,
+  "Descripcion": "Lluvia (no congelándose).",
+  "iconDia": 71,
+  "iconNoche": 71
+ },
+ {
+  "Codigo": 22,
+  "Descripcion": "Nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 23,
+  "Descripcion": "Lluvia con nieve o granos de hielo.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 24,
+  "Descripcion": "Llovizna o lluvia congelándose.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 25,
+  "Descripcion": "Chaparrón (es) de lluvia.",
+  "iconDia": 75,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 26,
+  "Descripcion": "Chaparrón (es) de nieve o de lluvia y nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 27,
+  "Descripcion": "Chaparrón (es) de granizo, o de pedrisco, granizo blando, o de lluvia y granizo.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 28,
+  "Descripcion": "Niebla o niebla helada.",
+  "iconDia": 94,
+  "iconNoche": 94
+ },
+ {
+  "Codigo": 29,
+  "Descripcion": "Tormenta (con precipitaciones o sin ellas).",
+  "iconDia": 76,
+  "iconNoche": 76
+ },
+ {
+  "Codigo": 30,
+  "Descripcion": "Ligera     o     moderada,     que     ha disminuido  en  el  curso  de  la  hora precedente",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 31,
+  "Descripcion": "Ligera o moderada, sin cambio apreciable en el curso de la hora precedente.",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 32,
+  "Descripcion": "Ligera     o     moderada,     que     ha comenzado,  o  ha  aumentado,  en  el curso de la hora precedente.",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 33,
+  "Descripcion": "Violenta, que ha disminuido en el curso de la hora precedente.",
+  "iconDia": 73,
+  "iconNoche": 73
+ },
+ {
+  "Codigo": 34,
+  "Descripcion": "Violenta, sin cambio apreciable en el curso de la hora precedente.",
+  "iconDia": 73,
+  "iconNoche": 73
+ },
+ {
+  "Codigo": 35,
+  "Descripcion": "Violenta, que ha comenzado, o ha aumentando, en el curso de la hora precedente.",
+  "iconDia": 73,
+  "iconNoche": 73
+ },
+ {
+  "Codigo": 36,
+  "Descripcion": "Ventisca débil o moderada, generalmente baja (por debajo del nivel de la visual del observador).",
+  "iconDia": 51,
+  "iconNoche": 51
+ },
+ {
+  "Codigo": 37,
+  "Descripcion": "Ventisca fuerte, generalmente baja (por debajo del nivel de la visual del observador).",
+  "iconDia": 51,
+  "iconNoche": 51
+ },
+ {
+  "Codigo": 38,
+  "Descripcion": "Ventisca débil o moderada, generalmente elevada (por encima del nivel de la visual del observador).",
+  "iconDia": 51,
+  "iconNoche": 51
+ },
+ {
+  "Codigo": 39,
+  "Descripcion": "Ventisca fuerte, generalmente elevada (por encima del nivel de la visual del observador).",
+  "iconDia": 51,
+  "iconNoche": 51
+ },
+ {
+  "Codigo": 40,
+  "Descripcion": "Niebla o niebla helada a la distancia en el momento de la observación; la niebla o niebla helada se extiende hasta el nivel superior al del observador. No hubo niebla o niebla helada en la estación en el curso de la hora precedente.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 41,
+  "Descripcion": "Niebla, o niebla helada en bancos.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 42,
+  "Descripcion": "Niebla, o niebla helada, cielo visible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 43,
+  "Descripcion": "Niebla, o niebla helada, cielo invisible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 44,
+  "Descripcion": "Niebla, o niebla helada, cielo visible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 45,
+  "Descripcion": "Niebla, o niebla helada, cielo invisible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 46,
+  "Descripcion": "Niebla, o niebla helada, cielo visible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 47,
+  "Descripcion": "Niebla, o niebla helada, cielo invisible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 48,
+  "Descripcion": "Niebla, depositando cenceñada, cielo visible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 49,
+  "Descripcion": "Niebla, depositando cenceñada, cielo invisible.",
+  "iconDia": 67,
+  "iconNoche": 67
+ },
+ {
+  "Codigo": 50,
+  "Descripcion": "Llovizna intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 51,
+  "Descripcion": "Llovizna continua, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 52,
+  "Descripcion": "Llovizna intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 53,
+  "Descripcion": "Llovizna continua, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 54,
+  "Descripcion": "Llovizna intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 55,
+  "Descripcion": "Llovizna continua, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 56,
+  "Descripcion": "Llovizna débil, congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 57,
+  "Descripcion": "Llovizna moderada o fuerte (densa), congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 58,
+  "Descripcion": "Llovizna y lluvia, débil.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 59,
+  "Descripcion": "Llovizna y lluvia, moderada o fuerte.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 60,
+  "Descripcion": "Lluvia intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 61,
+  "Descripcion": "Lluvia continua, no congelándose.",
+  "iconDia": 83,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 62,
+  "Descripcion": "Lluvia intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 63,
+  "Descripcion": "Lluvia continua, no congelándose.",
+  "iconDia": 83,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 64,
+  "Descripcion": "Lluvia intermitente, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 65,
+  "Descripcion": "Lluvia continua, no congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 66,
+  "Descripcion": "Lluvia débil, congelándose.",
+  "iconDia": 74,
+  "iconNoche": 75
+ },
+ {
+  "Codigo": 67,
+  "Descripcion": "Lluvia moderada o fuerte, congelándose.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 68,
+  "Descripcion": "Lluvia y nieve o llovizna y nieve, débil.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 69,
+  "Descripcion": "Lluvia y nieve o llovizna y nieve, moderada o fuerte.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 70,
+  "Descripcion": "Caída intermitente de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 71,
+  "Descripcion": "Caída continua de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 72,
+  "Descripcion": "Caída intermitente de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 73,
+  "Descripcion": "Caída continua de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 74,
+  "Descripcion": "Caída intermitente de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 75,
+  "Descripcion": "Caída continua de copos de nieve.",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 76,
+  "Descripcion": "Prismas de hielo (con niebla o sin ella).",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 77,
+  "Descripcion": "Nieve granulada (con niebla o sin ella).",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 78,
+  "Descripcion": "Cristales aislados de nieve en forma de estrellas (con niebla o sin ella).",
+  "iconDia": 85,
+  "iconNoche": 85
+ },
+ {
+  "Codigo": 79,
+  "Descripcion": "Granos de hielo.",
+  "iconDia": 94,
+  "iconNoche": 94
+ },
+ {
+  "Codigo": 80,
+  "Descripcion": "Chaparrón (es) de lluvia, débil (es).",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 81,
+  "Descripcion": "Chaparrón (es) de lluvia, moderado (s) o fuerte (s).",
+  "iconDia": 72,
+  "iconNoche": 72
+ },
+ {
+  "Codigo": 82,
+  "Descripcion": "Chaparrón (es) de lluvia, violento (s).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 83,
+  "Descripcion": "Chaparrón (es) de lluvia y nieve, débil (es).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 84,
+  "Descripcion": "Chaparrón (es) de lluvia y nieve, moderado (s) o fuerte (s).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 85,
+  "Descripcion": "Chaparrón (es) de nieve, débil (es).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 86,
+  "Descripcion": "Chaparrón (es) de nieve, moderado (s) o fuerte (s).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 87,
+  "Descripcion": "Chaparrón (es) de granizo o de granizo blando, con lluvia o sin ella o lluvia con nieve, débil (es).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 88,
+  "Descripcion": "Chaparrón (es) de granizo o de granizo blando, con lluvia o sin ella o lluvia con nieve, moderado (s) o fuerte (s).",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 89,
+  "Descripcion": "Chaparrón (es) de pedrisco con lluvia, o sin ella, con nieve, débil (es), sin truenos.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 90,
+  "Descripcion": "Chaparrón (es) de pedrisco con lluvia, o    sin    ella    o    lluvia    con    nieve, moderado (s) o fuerte (s), sin truenos.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 91,
+  "Descripcion": "Lluvia débil en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 92,
+  "Descripcion": "Lluvia   moderada   o   fuerte   en   el momento de la observación",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 93,
+  "Descripcion": "Caída débil de nieve o agua con nieve o granizo, granizo blando o pedrisco en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 94,
+  "Descripcion": "Caída moderada o fuerte de nieve o agua con nieve o granizo blando o pedrisco en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 95,
+  "Descripcion": "Tormenta débil o moderada sin granizo, granizo blando o pedrisco, pero con lluvia y\/o nieve en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 96,
+  "Descripcion": "Tormenta débil o moderada con granizo, granizo blando o pedrisco en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 97,
+  "Descripcion": "Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluvia y\/o nieve en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 98,
+  "Descripcion": "Tormenta con tempestad de polvo o de arena en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ },
+ {
+  "Codigo": 99,
+  "Descripcion": "Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.",
+  "iconDia": 83,
+  "iconNoche": 83
+ }
+]
