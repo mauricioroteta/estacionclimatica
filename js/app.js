@@ -1,3 +1,5 @@
+let clima = []
+
 let WWO = new Map();
 WWO.set(0,'Ningún     desarrollo     nuboso     fue observado u observable.');
 WWO.set(1,'Nubes en disolución o haciéndose menos desarrolladas.');
@@ -100,17 +102,17 @@ WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluv
 WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
 WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
 
-
 class DatosDia {
     constructor (i, datos){
-        this._dia = datos.apparent_time[i];
+        this._dia = datos.time[i];
         this._tempMax = datos.temperature_2m_max[i];
-        this._tempMin = datos.emperature_2m_min[i];
+        this._tempMin = datos.temperature_2m_min[i];
         this._sunrise = datos.sunrise[i];
         this._sunset = datos.sunset[i];
         this._precipitaciones = datos.precipitation_sum[i];
         this._sensacionTermicaMax = datos.apparent_temperature_max[i];
         this._sensacionTermicaMin = datos.apparent_temperature_min[i];
+        this._weathercode = datos.weathercode[i];
     }
 }
 
@@ -123,8 +125,18 @@ class Ciudad{
         this._vientoDireccion = j.current_weather.winddirection;
         this._vientoVelocidad = j.current_weather.windspeed;
         this._tiempoResumido = WWO.get(parseInt(j.current_weather.weathercode))
-        this._nuvosidad = 
-        this._dias = [];
+        this._weathercode = j.current_weather.weathercode;
+        this._dia = []
+        for (let i in j.daily.time){
+            let x = new DatosDia(i, j.daily)
+            this._dia.push(x)
+        }
+    }
+    set_icon(i){
+        this._icon = i;
+    }
+    get_icon(){
+        return this._icon;
     }
 }
 
@@ -204,9 +216,18 @@ function ObtenerPronostico(lat, long){
         .then(json => {
             const x = new Ciudad(lat, long, json, WWO)
             console.log(json)
+
+            console.log(x._icon)
+
+            fetch("/js/clima.json")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                x.set_icon(data[x._weathercode].iconDia);
+
             document.getElementById('temperaturaActual').textContent = x._temperatura + ' °C'
             document.getElementById('viento').textContent = x._vientoVelocidad + ' km/h - ' + direccionDelViento(parseInt(x._vientoDireccion))
-            document.getElementById('localidad').textContent = x._nombre//ObtenerNombreLocalidad(x._latitud, x._longitud)
+            document.getElementById('localidad').textContent = x._nombre
             document.getElementById('resumen').textContent = x._tiempoResumido
             CompletarDias()
 
@@ -233,37 +254,40 @@ function ObtenerPronostico(lat, long){
                 }
             }
 
-            document.getElementById('icnDia').src = nuvosidad(parseInt(nuveAhora))
+            console.log('img/' + x._icon + '.png')
+            document.getElementById('icnDia').src = 'img/' + x._icon + '.png'
+            //nuvosidad(parseInt(nuveAhora))
 
-            document.getElementById('tempDia1').textContent = json.daily.temperature_2m_max[0] + ' / ' + json.daily.temperature_2m_min[0]
-            document.getElementById('iconDia1').src = nuvosidad(parseInt(nuves[1]), parseInt(json.daily.precipitation_sum[0]))
-            if (json.daily.precipitation_sum[0] > 0){
-                document.getElementById('precipDia1').textContent = json.daily.precipitation_sum[0] + ' mm'
+            document.getElementById('tempDia1').textContent = x._dia[1]._tempMax + ' / ' + x._dia[1]._tempMin
+            document.getElementById('iconDia1').src = 'img/' + data[x._dia[1]._weathercode].iconDia + '.png'
+            if (json.daily.precipitation_sum[1] > 0){
+                document.getElementById('precipDia1').textContent = x._dia[1]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia1').textContent = '--'}
             
-            document.getElementById('tempDia2').textContent = json.daily.temperature_2m_max[1] + ' / ' + json.daily.temperature_2m_min[1]
-            document.getElementById('iconDia2').src = nuvosidad(parseInt(nuves[2]), parseInt(json.daily.precipitation_sum[1]))
-            if (json.daily.precipitation_sum[1] > 0){
-                document.getElementById('precipDia2').textContent = json.daily.precipitation_sum[1] + ' mm'
+            document.getElementById('tempDia2').textContent = x._dia[2]._tempMax + ' / ' + x._dia[2]._tempMin
+            document.getElementById('iconDia2').src = 'img/' + data[x._dia[2]._weathercode].iconDia + '.png'
+            if (json.daily.precipitation_sum[2] > 0){
+                document.getElementById('precipDia2').textContent = x._dia[2]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia2').textContent = '--'}
 
-            document.getElementById('tempDia3').textContent = json.daily.temperature_2m_max[2] + ' / ' + json.daily.temperature_2m_min[2]
-            document.getElementById('iconDia3').src = nuvosidad(parseInt(nuves[3]), parseInt(json.daily.precipitation_sum[2]))
-            if (json.daily.precipitation_sum[2] > 0){
-                document.getElementById('precipDia3').textContent = json.daily.precipitation_sum[2] + ' mm'
+            document.getElementById('tempDia3').textContent = x._dia[3]._tempMax + ' / ' + x._dia[3]._tempMin
+            document.getElementById('iconDia3').src = 'img/' + data[x._dia[3]._weathercode].iconDia + '.png'
+            if (json.daily.precipitation_sum[3] > 0){
+                document.getElementById('precipDia3').textContent = x._dia[3]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia3').textContent = '--'}
 
-            document.getElementById('tempDia4').textContent = json.daily.temperature_2m_max[3] + ' / ' + json.daily.temperature_2m_min[3]
-            document.getElementById('iconDia4').src = nuvosidad(parseInt(nuves[4]), parseInt(json.daily.precipitation_sum[3]))
-            if (json.daily.precipitation_sum[3] > 0){
-                document.getElementById('precipDia4').textContent = json.daily.precipitation_sum[3] + ' mm'
+            document.getElementById('tempDia4').textContent = x._dia[4]._tempMax + ' / ' + x._dia[4]._tempMin
+            document.getElementById('iconDia4').src = 'img/' + data[x._dia[4]._weathercode].iconDia + '.png'
+            if (json.daily.precipitation_sum[4] > 0){
+                document.getElementById('precipDia4').textContent = x._dia[4]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia4').textContent = '--'}
 
-            document.getElementById('tempDia5').textContent = json.daily.temperature_2m_max[4] + ' / ' + json.daily.temperature_2m_min[4]
-            document.getElementById('iconDia5').src = nuvosidad(parseInt(nuves[5]), parseInt(json.daily.precipitation_sum[4]))
-            if (json.daily.precipitation_sum[4] > 0){
-                document.getElementById('precipDia5').textContent = json.daily.precipitation_sum[4] + ' mm'
+            document.getElementById('tempDia5').textContent = x._dia[5]._tempMax + ' / ' + x._dia[5]._tempMin
+            document.getElementById('iconDia5').src = 'img/' + data[x._dia[5]._weathercode].iconDia + '.png'
+            if (json.daily.precipitation_sum[5] > 0){
+                document.getElementById('precipDia5').textContent = x._dia[5]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia5').textContent = '--'}
+        });
         })  
 }
 

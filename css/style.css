@@ -18,6 +18,7 @@ body{
     border-color: rgba(238, 237, 237, 0.438);
     box-shadow: 5px 8px 10px #80808033;
 }
+
 @media(max-width:767px){
     .card{
         height: 10rem;
