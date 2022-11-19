@@ -121,6 +121,9 @@ body{
         font-weight: bold;
         color: black;
     }
+    .graficoTemp{
+        height:35vh; 
+    }
 }
 @media(max-width:320px)
 {
@@ -128,6 +131,9 @@ body{
         font-size: 0.6rem;
         font-weight: bold;
         color: black;
+    }
+    .graficoTemp{
+        height:30vh; 
     }
 }
 .row4{
@@ -148,6 +154,7 @@ body{
 }
 .graficoTemp{
     position: relative; 
-    height:40vh; 
+    height:60vh; 
     width:auto;
+    align-items: center;
 }
