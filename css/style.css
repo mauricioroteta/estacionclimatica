@@ -146,3 +146,8 @@ body{
 .row{
     overflow: visible;
 }
+.graficoTemp{
+    position: relative; 
+    height:80vh; 
+    width:auto;
+}

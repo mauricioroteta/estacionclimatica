@@ -27,3 +27,7 @@ Incorporacion de Maps() para traer las descripciones en español de WWO (estanda
 Hover en el cima diario para acceder a mas detalles (En proceso)
 Iconos dinamicos (modifica tamaño con transform: scale)
 Determina promedio de nuvosidad diaria porque la API no establece la nuvosidad como un dato de cada día.
+
+Preentrega 03:
+Obtiene iconos de _weathercode
+Muestra mas informacion del día seleccionado en pantalla modal

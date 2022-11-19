@@ -102,6 +102,35 @@ WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluv
 WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
 WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
 
+
+function Grafico(dias, tempMax, tempMin){
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: dias,
+    datasets: [{
+      label: 'Temp. Maximas',
+      data: tempMax,
+      borderWidth: 1
+    },
+    {
+        label: 'Temp. Minimas',
+        data: tempMin,
+        borderWidth: 1
+      }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+}
+
 class DatosDia {
     constructor (i, datos){
         this._dia = datos.time[i];
@@ -208,6 +237,14 @@ function CompletarDias(){
         document.getElementById('NombreDia' + i).textContent = today.toLocaleString('es-LA', options)
     }
 }
+function json2array(json){
+    var result = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key){
+        result.push(json[key]);
+    });
+    return result;
+}
 
 // Obtiene proostico del tiempo para las coordenadas
 function ObtenerPronostico(lat, long){
@@ -215,6 +252,13 @@ function ObtenerPronostico(lat, long){
         .then(response => response.json())
         .then(json => {
             const x = new Ciudad(lat, long, json, WWO)
+
+            let dias = json2array(json.daily.time)
+            let tempMax = json2array(json.daily.temperature_2m_max)
+            let tempMin = json2array(json.daily.temperature_2m_min)
+
+            Grafico(dias, tempMax, tempMin)
+
             console.log(json)
 
             console.log(x._icon)
