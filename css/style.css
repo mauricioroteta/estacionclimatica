@@ -27,6 +27,7 @@ body{
     .card-2{
         height: 7rem;
     }
+
 }
 .temp{
     font-size: 3.5rem;
@@ -121,9 +122,6 @@ body{
         font-weight: bold;
         color: black;
     }
-    .graficoTemp{
-        height:35vh; 
-    }
 }
 @media(max-width:320px)
 {
@@ -131,9 +129,6 @@ body{
         font-size: 0.6rem;
         font-weight: bold;
         color: black;
-    }
-    .graficoTemp{
-        height:30vh; 
     }
 }
 .row4{
@@ -154,7 +149,13 @@ body{
 }
 .graficoTemp{
     position: relative; 
-    height:60vh; 
+    height:40vh; 
     width:auto;
     align-items: center;
+}
+.img-detalle{
+    position:absolute;
+    padding: 20px;
+    align-content: center;
+    width: 8rem;
 }

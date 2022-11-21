@@ -102,7 +102,6 @@ WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluv
 WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
 WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
 
-
 function Grafico(dias, tempMax, tempMin){
 const ctx = document.getElementById('myChart');
 
@@ -113,20 +112,27 @@ new Chart(ctx, {
     datasets: [{
       label: 'Temp. Maximas',
       data: tempMax,
-      borderWidth: 1
+      borderWidth: 1,
+      borderColor: "#FF0000"
     },
     {
         label: 'Temp. Minimas',
         data: tempMin,
-        borderWidth: 1
+        borderWidth: 1,
+        borderColor: "#0000FF"
       }]
   },
   options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
+        plugins: {
+            title: {
+                display: true,
+                text: 'Gráfico de Temperaturas',
+                padding: {
+                    top: 10,
+                    bottom: 30
+                }
+            }
+        }
   }
 });
 }
@@ -142,6 +148,8 @@ class DatosDia {
         this._sensacionTermicaMax = datos.apparent_temperature_max[i];
         this._sensacionTermicaMin = datos.apparent_temperature_min[i];
         this._weathercode = datos.weathercode[i];
+        this._direccionViento = datos.winddirection_10m_dominant[i]
+        this._velocidadViento = datos.windspeed_10m_max[i]
     }
 }
 
@@ -220,11 +228,11 @@ function direccionDelViento(n){
 }
 
 function ObtenerNombreLocalidad(lat, long){
-    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + long)
+    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + long + '&zoom=10&format=jsonv2')
     .then(response => response.json())
     .then(json => {
         console.log(json)
-        document.getElementById('localidad').textContent = json.address.state_district + " - " + json.address.state + ' - ' + json.address.country
+        document.getElementById('localidad').textContent = json.name + " - " + json.address.state_district + ' - ' + json.address.country
     })  
 }
 // Completa los dias de la semana en el pronostico semanal
@@ -246,12 +254,16 @@ function json2array(json){
     return result;
 }
 
+var pronostico;
+var datos;
+
 // Obtiene proostico del tiempo para las coordenadas
 function ObtenerPronostico(lat, long){
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=windspeed_10m_max,winddirection_10m_dominant,weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
             const x = new Ciudad(lat, long, json, WWO)
+            pronostico = x;
 
             let dias = json2array(json.daily.time)
             let tempMax = json2array(json.daily.temperature_2m_max)
@@ -268,6 +280,7 @@ function ObtenerPronostico(lat, long){
             .then((data) => {
                 console.log(data);
                 x.set_icon(data[x._weathercode].iconDia);
+                datos = data
 
             document.getElementById('temperaturaActual').textContent = x._temperatura + ' °C'
             document.getElementById('viento').textContent = x._vientoVelocidad + ' km/h - ' + direccionDelViento(parseInt(x._vientoDireccion))
@@ -347,3 +360,26 @@ function obtenerPos(){
             ObtenerPronostico(lat, long);
         });   
     }}
+
+function mostrarPronostico(dia) {
+    document.getElementById('iconDiaR').src = 'img/' + datos[parseInt(pronostico._dia[parseInt(dia)]._weathercode)].iconDia + '.png'
+    document.getElementById('InfoDia').textContent = pronostico._dia[parseInt(dia)]._dia
+    document.getElementById('tblMax').textContent = pronostico._dia[parseInt(dia)]._tempMax
+    document.getElementById('tblMin').textContent = pronostico._dia[parseInt(dia)]._tempMin
+    document.getElementById('tblViento').textContent = pronostico._dia[parseInt(dia)]._velocidadViento + ' km/h - ' + direccionDelViento(pronostico._dia[parseInt(dia)-1]._direccionViento)
+    if (pronostico._dia[parseInt(dia)]._precipitaciones == 0){
+        document.getElementById('tblPrecip').textContent = 'No se registran'
+    } else
+        document.getElementById('tblPrecip').textContent = pronostico._dia[parseInt(dia)]._precipitaciones + ' mm';
+
+    document.getElementById('pronosticoDia').textContent = WWO.get(parseInt(pronostico._dia[parseInt(dia)]._weathercode))
+}
+
+
+function buscarLocalidad(){
+        fetch('https://nominatim.openstreetmap.org/search.php?q=' + document.getElementById('campobuscar').value + '&format=jsonv2')
+        .then(response => response.json())
+        .then(json => {
+            alert(json)
+        }
+        )}
