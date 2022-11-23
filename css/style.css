@@ -165,7 +165,7 @@ body{
 }
 .graficoTemp{
     position: relative; 
-    height:auto;
+    height:80vh;
     width:auto;
     align-items: center;
 }
