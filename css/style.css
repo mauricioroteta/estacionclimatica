@@ -19,7 +19,6 @@ body{
     box-shadow: 5px 8px 10px #80808033;
 }
 
-
 @media(max-width:767px){
     .card{
         height: 10rem;
@@ -28,12 +27,13 @@ body{
     .card-2{
         height: 7rem;
     }
-
 }
+
 .temp{
     font-size: 3.5rem;
     color: rgb(0, 0, 0);
 }
+
 .fav{
     font-size: 0.8rem;
     color: rgb(0, 0, 0);
@@ -63,6 +63,7 @@ body{
         font-size: 2rem;
     }
 }
+
 .localidad{
     margin-bottom: 1.5rem;
     padding-left: 2rem;
