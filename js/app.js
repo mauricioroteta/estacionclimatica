@@ -102,6 +102,20 @@ WWO.set(97,'Tormenta fuerte sin granizo, granizo blando o pedrisco pero con lluv
 WWO.set(98,'Tormenta con tempestad de polvo o de arena en el momento de la observación.');
 WWO.set(99,'Tormenta fuerte, con granizo, granizo blando o pedrisco en el momento de la observación.');
 
+var retorno
+
+function ObtenerNombreLocalidad(lat, long){
+
+    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + parseFloat(lat) + '&lon=' + parseFloat(long) + '&zoom=10&format=jsonv2')
+    .then(response => response.json())
+    .then(json => {
+        console.log(json)
+        document.getElementById('localidad').textContent = json.name + " - " + json.address.state_district + ' - ' + json.address.country
+        retorno = json.name + " - " + json.address.state_district + ' - ' + json.address.country
+    })  
+    return retorno
+}
+
 function Grafico(dias, tempMax, tempMin){
 const ctx = document.getElementById('myChart');
 
@@ -157,7 +171,7 @@ class Ciudad{
     constructor (l, g, j, WWO){
         this._latitud = l;
         this._longitud = g;
-        this._nombre = ObtenerNombreLocalidad(l, g);
+        this._nombre = ObtenerNombreLocalidad(parseFloat(l), parseFloat(g));
         this._temperatura = j.current_weather.temperature;
         this._vientoDireccion = j.current_weather.winddirection;
         this._vientoVelocidad = j.current_weather.windspeed;
@@ -227,14 +241,7 @@ function direccionDelViento(n){
     }
 }
 
-function ObtenerNombreLocalidad(lat, long){
-    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + long + '&zoom=10&format=jsonv2')
-    .then(response => response.json())
-    .then(json => {
-        console.log(json)
-        document.getElementById('localidad').textContent = json.name + " - " + json.address.state_district + ' - ' + json.address.country
-    })  
-}
+
 // Completa los dias de la semana en el pronostico semanal
 function CompletarDias(){
     var today = new Date();
@@ -263,7 +270,6 @@ function ObtenerPronostico(lat, long){
         .then(response => response.json())
         .then(json => {
             const x = new Ciudad(lat, long, json, WWO)
-            pronostico = x;
 
             let dias = json2array(json.daily.time)
             let tempMax = json2array(json.daily.temperature_2m_max)
@@ -311,6 +317,8 @@ function ObtenerPronostico(lat, long){
                 }
             }
 
+            pronostico = x;
+
             console.log('img/' + x._icon + '.png')
             document.getElementById('icnDia').src = 'img/' + x._icon + '.png'
             //nuvosidad(parseInt(nuveAhora))
@@ -350,6 +358,9 @@ function ObtenerPronostico(lat, long){
 
 // Obtiene Posicion del dispositivo (coordenadas)
 function obtenerPos(){
+    let j 
+    j = JSON.parse(localStorage.getItem("favorito"))
+    if (j == null){
     if (navigator.geolocation) { 
         navigator.geolocation.getCurrentPosition(function(position){
             lat = position.coords.latitude;
@@ -358,8 +369,12 @@ function obtenerPos(){
             var geocoding ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&sensor=false';
 
             ObtenerPronostico(lat, long);
-        });   
-    }}
+        });
+    }}else{
+        ObtenerPronostico(j.lat, j.lon);
+        document.getElementById("fav").src="/img/favorito.svg";
+    }
+}
 
 function mostrarPronostico(dia) {
     document.getElementById('iconDiaR').src = 'img/' + datos[parseInt(pronostico._dia[parseInt(dia)]._weathercode)].iconDia + '.png'
@@ -375,11 +390,122 @@ function mostrarPronostico(dia) {
     document.getElementById('pronosticoDia').textContent = WWO.get(parseInt(pronostico._dia[parseInt(dia)]._weathercode))
 }
 
+function borrar() {
+        var options = document.querySelectorAll('#fruits2');
+        options.forEach(o => o.remove());
+    }
 
 function buscarLocalidad(){
         fetch('https://nominatim.openstreetmap.org/search.php?q=' + document.getElementById('campobuscar').value + '&format=jsonv2')
         .then(response => response.json())
         .then(json => {
-            alert(json)
+            localidades = json;
+            for(var i=0;i<json.length;i++){
+                if (json[i].category == 'boundary'){
+                    var fruits = document.querySelector('#fruits2');
+
+                    fruits.innerHTML = fruits.innerHTML  + 
+                    '<option value=' + i + '>' +  json[i].display_name + '</option>'
+                }
+            }
         }
         )}
+
+
+function AddFav(x) {
+    let j 
+    j = JSON.parse(localStorage.getItem("favorito"))
+    if (j != null){
+        Swal.fire({
+            title: 'Esta usted seguro?',
+            text: "Desea borrar esta ubicacion favorita?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FF0000',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Borrar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Borrada!',
+                    'La localidad ha sido borrada.',
+                    'Borrada'
+            )
+            GuardarLocaldadLS()
+            }
+        })}else{
+            Swal.fire({
+                title: 'Esta usted seguro?',
+                text: "Desea guardar esta ubicacion como favorita?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Guardar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Guardada!',
+                        'La localidad ha sido grabada.',
+                        'Grabado'
+                )
+                GuardarLocaldadLS()
+                }
+            })
+        }
+}
+
+function GuardarLocaldadLS(){
+
+    let j 
+    j = JSON.parse(localStorage.getItem("favorito"))
+    if (j == null){
+
+    const favorito = {
+        name : "Fav",
+        lat : pronostico._latitud,
+        lon : pronostico._longitud,
+        localidad : ObtenerNombreLocalidad(parseFloat(pronostico._latitud), parseFloat(pronostico._longitud))
+      }
+      
+      window.localStorage.setItem("favorito", JSON.stringify(favorito));
+      document.getElementById("fav").src="/img/favorito.svg";
+    }else{
+        window.localStorage.removeItem("favorito")
+        document.getElementById("fav").src="/img/save.svg";
+    }
+
+}
+
+function ObtenerLocaldadLS(){
+
+    /*const favorito = {
+        name : "Fav",
+        lat : pronostico._latitud,
+        lon : pronostico._longitud,
+        localidad : ObtenerNombreLocalidad(parseFloat(pronostico._latitud), parseFloat(pronostico._longitud))
+      }
+      
+      window.localStorage.setItem("favorito", JSON.stringify(favorito)); */
+      alert(JSON.parse(localStorage.getItem("favorito")))
+}
+
+function iconoSobre(objeto) {
+    let j 
+    j = JSON.parse(localStorage.getItem("favorito"))
+    if (j == null){
+        document.getElementById("fav").src="/img/favorito.svg";
+    }else{
+        document.getElementById("fav").src="/img/delete.svg";
+    }
+}
+
+function iconoSale(objeto) {
+    let j 
+    j = JSON.parse(localStorage.getItem("favorito"))
+    if (j == null){
+       document.getElementById("fav").src="/img/Save.svg";
+    }else{
+        document.getElementById("fav").src="/img/favorito.svg";
+    }
+}

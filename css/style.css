@@ -19,6 +19,7 @@ body{
     box-shadow: 5px 8px 10px #80808033;
 }
 
+
 @media(max-width:767px){
     .card{
         height: 10rem;
@@ -33,10 +34,22 @@ body{
     font-size: 3.5rem;
     color: rgb(0, 0, 0);
 }
-.viento, .localidad{
+.fav{
+    font-size: 0.8rem;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    bottom:1.7rem;
+    left:auto;
+    right:auto;
+}
+.fav:hover {
+    cursor: pointer;
+  }
+.viento{
     font-size: 0.8rem;
     color: rgb(0, 0, 0);
 }
+
 .card-1{
     background: linear-gradient(to right, #ffffff 30%, rgba(0, 59, 252, 0.507));
 }
@@ -52,6 +65,7 @@ body{
 }
 .localidad{
     margin-bottom: 1.5rem;
+    padding-left: 2rem;
     position: absolute;
     bottom:0px;
     left:auto;
@@ -76,9 +90,10 @@ body{
         transform: scale(1);
 	}
 }
+
 .img-fluid{
     float: right;
-    width: 60%;
+    width: 40%;
     display: flex;
     align-items: center;
 	animation: float 8s ease-in-out infinite;
@@ -153,6 +168,7 @@ body{
     width:auto;
     align-items: center;
 }
+
 .img-detalle{
     position:absolute;
     padding: 20px;
