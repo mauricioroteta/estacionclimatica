@@ -31,3 +31,8 @@ Determina promedio de nuvosidad diaria porque la API no establece la nuvosidad c
 Preentrega 03:
 Obtiene iconos de _weathercode
 Muestra mas informacion del día seleccionado en pantalla modal
+Guarda en localStorage la ubicacion en lugar de traerla del GPS. La idea es hacer un buscador de localidades y que pueda seleccionar y guadando en favoritas las que quiera (si llego)
+Quede a medio camino de migrar el map al json para traer los datos del codigo  clima, donde guardo en un json el codigo, descripcion, icono si es de dia e icono si es de noche. El objetivo es asociar el sol si es de dia y la luna de noche.
+Agregue un grafico de temperaturas (chart.js) y un Alert para confirmar grabacion y borrado de favoritos (SweetAlert)
+
+PENDIENTE: No se ve muy bien el grafico en el celu (tengo que trabajar en el responsive)

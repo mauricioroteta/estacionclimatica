@@ -7,6 +7,7 @@ body{
     color: rgb(105, 104, 104);
     font-family: sans-serif;
 }
+
 .container
 {
     width: fit-content;
@@ -21,7 +22,7 @@ body{
 
 @media(max-width:767px){
     .card{
-        height: 10rem;
+        height: 12rem;
         padding: 1.5rem 1.5rem 1rem 1.5rem;
     }
     .card-2{
@@ -165,8 +166,8 @@ body{
 }
 .graficoTemp{
     position: relative; 
-    height:50vh;
-    width:auto;
+    height:50vh !important;
+    width:auto !important;
     align-items: center;
 }
 

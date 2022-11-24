@@ -510,3 +510,7 @@ function iconoSale(objeto) {
         document.getElementById("fav").src="/img/favorito.svg";
     }
 }
+
+function esDeDia(){
+    
+}
