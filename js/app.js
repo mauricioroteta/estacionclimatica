@@ -1,3 +1,5 @@
+
+
 let clima = []
 
 let WWO = new Map();
@@ -117,8 +119,14 @@ function ObtenerNombreLocalidad(lat, long){
 }
 
 function Grafico(dias, tempMax, tempMin){
-const ctx = document.getElementById('myChart');
+//const ctx = document.getElementById('myChart');
 
+var ctx = document.getElementById('myChart').getContext('2d');
+if (window.grafica) {
+    window.grafica.clear();
+    window.grafica.destroy();
+}
+window.grafica = 
 new Chart(ctx, {
   type: 'line',
   data: {
@@ -396,11 +404,30 @@ function borrar() {
         options.forEach(o => o.remove());
     }
 
+function selectLocalidad(){
+        var combo = document.getElementById("fruits2");
+        var selected = combo.options[combo.selectedIndex].text;
+
+        fetch('https://nominatim.openstreetmap.org/search.php?q=' + selected + '&format=jsonv2')
+        .then(response => response.json())
+        .then(json => {
+            localidades = json;
+            ObtenerPronostico(localidades[0].lat, localidades[0].lon);
+        }
+)}
+
+
 function buscarLocalidad(){
+        var selectobject = document.getElementById("fruits2");
+        for (var i = selectobject.length - 1; i >= 0; --i) {
+                selectobject.remove(i);
+        }
+
         fetch('https://nominatim.openstreetmap.org/search.php?q=' + document.getElementById('campobuscar').value + '&format=jsonv2')
         .then(response => response.json())
         .then(json => {
             localidades = json;
+
             for(var i=0;i<json.length;i++){
                 if (json[i].category == 'boundary'){
                     var fruits = document.querySelector('#fruits2');

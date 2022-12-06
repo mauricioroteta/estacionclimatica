@@ -1,0 +1,21 @@
+El SMN disponibiliza en https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml el aviso a corto plazo para tormentas severas y caida de granizo
+
+Otros canales:
+
+Canal Alertas y Advertencias
+
+          https://ssl.smn.gob.ar/CAP/AR.php  
+ 
+Canal Temperaturas Extremas
+
+          https://ssl.smn.gob.ar/CAP/AR.php  
+ 
+Canal Aviso Meteorológico a Corto Plazo
+
+           https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml
+ 
+
+           https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/rss_acpCAP.xml
+ 
+
+           https://ssl.smn.gob.ar/CAP/AR.php

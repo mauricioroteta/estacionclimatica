@@ -177,3 +177,10 @@ body{
     align-content: center;
     width: 8rem;
 }
+
+.icon{
+	width: 3rem;
+}
+.item{
+	width: 100%;
+}

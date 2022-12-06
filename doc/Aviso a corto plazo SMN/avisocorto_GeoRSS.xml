@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <rss version="2.0" xmlns:georss="http://www.georss.org/georss" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <channel><title>Ultimos Avisos a muy Corto Plazo publicados por el Servicio Meteorológico Nacional (SMN)</title>
+   <link>https://ssl.smn.gob.ar</link>
+   <description>Ultimos Avisos a muy Corto Plazo publicados por el Servicio Meteorológico Nacional (SMN)</description>
+   <dc:publisher>Servicio Meteorológico Nacional (SMN)</dc:publisher>
+   <language>es</language>
+   <copyright>Copyright 2003 SMN | Todos los derechos reservados</copyright>
+   <item>
+			  <title><![CDATA[Aviso Meteorológico a muy Corto Plazo N° 3117 del 28-11-2022 a las 15:37 HOA.]]></title>
+			  <link>https://ssl.smn.gob.ar/?mod=pron&amp;id=55</link>
+			  <description>
+			  <![CDATA[<p>El 28-11-2022 a las 15:37 HOA el Servicio Meteorológico Nacional ha emitido un <b>AVISO A CORTO PLAZO por ocurrencia de TORMENTAS FUERTES CON LLUVIAS INTENSAS Y OCASIONAL CAIDA DE GRANIZO</b>.</p>
+			  <p> Afectando parcialmente los siguientes Partidos | Departamentos: <p>
+			  <p><b>MENDOZA:</b> Malargue.</p>
+			  <p><img src="https://ssl.smn.gob.ar/pronosticos/avisomet/datos_aviso/xZC1WiBK7nVrdgo/avi_gral.gif" /></p>
+			  <p><img src="https://ssl.smn.gob.ar/pronosticos/avisomet/datos_aviso/xZC1WiBK7nVrdgo/aviso.gif" /> </p>]]>
+			  </description>
+			  <dc:date>2022-11-28T15:37:00-03:00</dc:date>
+			  <georss:polygon>-37.22 -69.34 -37.42 -68.47 -37.61 -68.56 -37.73 -68.62 -37.66 -69.12 -37.56 -69.55</georss:polygon>
+			  </item>
+			  <item>
+			  <title><![CDATA[Aviso Meteorológico a muy Corto Plazo N° 3116 del 28-11-2022 a las 14:11 HOA.]]></title>
+			  <link>https://ssl.smn.gob.ar/?mod=pron&amp;id=55</link>
+			  <description>
+			  <![CDATA[<p>El 28-11-2022 a las 14:11 HOA el Servicio Meteorológico Nacional ha emitido un <b>AVISO A CORTO PLAZO por ocurrencia de TORMENTAS FUERTES CON LLUVIAS INTENSAS Y OCASIONAL CAIDA DE GRANIZO</b>.</p>
+			  <p> Afectando parcialmente los siguientes Partidos | Departamentos: <p>
+			  <p><b>RIO NEGRO:</b> Valcheta.</p>
+			  <p><img src="https://ssl.smn.gob.ar/pronosticos/avisomet/datos_aviso/kUYbA75uKDzdnpB/avi_gral.gif" /></p>
+			  <p><img src="https://ssl.smn.gob.ar/pronosticos/avisomet/datos_aviso/kUYbA75uKDzdnpB/aviso.gif" /> </p>]]>
+			  </description>
+			  <dc:date>2022-11-28T14:11:00-03:00</dc:date>
+			  <georss:polygon>-40.73 -67.60 -40.41 -66.46 -40.95 -66.26 -41.03 -67.60</georss:polygon>
+			  </item>
+			  </channel>
+  </rss>
