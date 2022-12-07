@@ -400,12 +400,12 @@ function mostrarPronostico(dia) {
 }
 
 function borrar() {
-        var options = document.querySelectorAll('#fruits2');
+        var options = document.querySelectorAll('#localidades');
         options.forEach(o => o.remove());
     }
 
 function selectLocalidad(){
-        var combo = document.getElementById("fruits2");
+        var combo = document.getElementById("localidades");
         var selected = combo.options[combo.selectedIndex].text;
 
         fetch('https://nominatim.openstreetmap.org/search.php?q=' + selected + '&format=jsonv2')
@@ -418,10 +418,13 @@ function selectLocalidad(){
 
 
 function buscarLocalidad(){
-        var selectobject = document.getElementById("fruits2");
+        var selectobject = document.getElementById("localidades");
         for (var i = selectobject.length - 1; i >= 0; --i) {
                 selectobject.remove(i);
         }
+        var localidades = document.querySelector('#localidades');
+        localidades.innerHTML = localidades.innerHTML  + 
+                    '<option value=' + 0 + '>' +  'Seleccione una localidad' + '</option>'
 
         fetch('https://nominatim.openstreetmap.org/search.php?q=' + document.getElementById('campobuscar').value + '&format=jsonv2')
         .then(response => response.json())
@@ -430,9 +433,9 @@ function buscarLocalidad(){
 
             for(var i=0;i<json.length;i++){
                 if (json[i].category == 'boundary'){
-                    var fruits = document.querySelector('#fruits2');
+                    var localidades = document.querySelector('#localidades');
 
-                    fruits.innerHTML = fruits.innerHTML  + 
+                    localidades.innerHTML = localidades.innerHTML  + 
                     '<option value=' + i + '>' +  json[i].display_name + '</option>'
                 }
             }
@@ -538,6 +541,32 @@ function iconoSale(objeto) {
     }
 }
 
-function esDeDia(){
+function getAlerta(){
+
     
+    const RSS_URL = 'https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/rss_acpCAP.xml';
+
+
+    fetch(RSS_URL)
+    .then(response => response.text())
+    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+        console.log(data);
+        const items = data.querySelectorAll("item");
+        if (items.length > 1){
+            let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+            width=600,height=300,left=100,top=100`;
+        
+            open("alerta.html", "test", params);
+        }else{
+            Swal.fire({
+                title: 'No hay Alertas!',
+                text: 'El SMN no registra Alertas en Argentina',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })       
+        }
+    });   
+
 }
+
