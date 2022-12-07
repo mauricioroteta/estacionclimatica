@@ -554,7 +554,7 @@ function getAlerta(){
         console.log(data);
         const items = data.querySelectorAll("item");
         if (items.length > 1){
-                window.open("alerta.html")
+            window.open("alerta.html", "_blank");
         }else{
             Swal.fire({
                 title: 'No hay Alertas!',
