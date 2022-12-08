@@ -285,7 +285,7 @@ function ObtenerPronostico(lat, long){
             let tempMin = json2array(json.daily.temperature_2m_min)
 
             Grafico(dias, tempMax, tempMin)
-
+            
             console.log(json)
 
             console.log(x._icon)
@@ -361,6 +361,9 @@ function ObtenerPronostico(lat, long){
             if (json.daily.precipitation_sum[5] > 0){
                 document.getElementById('precipDia5').textContent = x._dia[5]._precipitaciones + 'mm'
             } else {document.getElementById('precipDia5').textContent = '--'}
+
+            // BUSCA ALERTA METEOROLOGICO
+            getAlerta()
         });
         })  
 }
@@ -541,29 +544,70 @@ function iconoSale(objeto) {
     }
 }
 
+// Alerta Meteorologico
 function getAlerta(){
 
-    
-    const RSS_URL = 'https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/rss_acpCAP.xml';
-
+    // URL SMN GeoRSS
+    const RSS_URL = 'https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml';
 
     fetch(RSS_URL)
     .then(response => response.text())
     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
     .then(data => {
         console.log(data);
+
+        // Coordenadas locales (solo positivas y long + lat)
+        var pt = turf.point([pronostico._longitud*-1, pronostico._latitud*-1]);
+        
+        // Items 
         const items = data.querySelectorAll("item");
-        if (items.length > 1){
-            window.open("alerta.html", "_blank");
-        }else{
+
+        if (items.length = 0)
+        {
             Swal.fire({
                 title: 'No hay Alertas!',
                 text: 'El SMN no registra Alertas en Argentina',
                 icon: 'success',
                 confirmButtonText: 'Ok'
               })       
+        }else
+        {
+            for(let j=0; j<items.length; j++) {
+            
+            let str = items[j].childNodes[9].innerHTML;
+            let arr = str.split(' '); 
+            //dividir la cadena de texto por una coma
+            //var pt = turf.point([-58.93*-1,-35.86*-1]);
+            let poligono = turf.polygon([[
+                [-81, 41],
+                [-81, 47],
+                [-72, 47],
+                [-72, 41],
+                [-81, 41]
+              ]]);
+
+              for(let i=0; i<arr.length; i++) {
+                poligono.geometry.coordinates[0].push([arr[i+1]*-1,arr[i]*-1])
+                i++
+              }
+            poligono.geometry.coordinates[0].push([arr[1]*-1, arr[0]*-1])
+            poligono.geometry.coordinates[0].splice(0, 5)
+
+            if (turf.booleanPointInPolygon(pt, poligono)){
+                Swal.fire({
+                    title: 'ALERTA!',
+                    html:
+                    'Puese acceder a mas detalles , ' +
+                    '<a href="https://www.smn.gob.ar/avisos_a_muy_corto_plazo">aqui</a> ',
+                    text: 'El SMN registra Alerta Meteorologico para la zona en las proximas horas',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok'
+                  })  
+            }else{
+                console.log()
+            }
+        }
         }
     });   
 
 }
-
