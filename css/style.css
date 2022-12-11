@@ -28,12 +28,6 @@ body{
     .card-2{
         height: 7rem;
     }
-    .graficoTemp{
-        position: relative; 
-        height:50vh !important;
-        width:auto !important;
-        align-items: center;
-    }
 }
 
 .temp{
@@ -88,12 +82,7 @@ body{
     .localidad{
         font-size: 0.75rem;
     }
-    .graficoTemp{
-        position: relative; 
-        height:50vh !important;
-        width:auto !important;
-        align-items: center;
-    }
+
     
 }
 
@@ -130,12 +119,7 @@ body{
         opacity: 0.5;
         width: 90%;
     }
-    .graficoTemp{
-        position: relative; 
-        height:50vh !important;
-        width:auto !important;
-        align-items: center;
-    }
+
 }
 
 .card-2 .row{
@@ -161,12 +145,7 @@ body{
         font-weight: bold;
         color: black;
     }
-    .graficoTemp{
-        position: relative; 
-        height:50vh !important;
-        width:auto !important;
-        align-items: center;
-    }
+
 }
 @media(max-width:320px)
 {
@@ -175,12 +154,7 @@ body{
         font-weight: bold;
         color: black;
     }
-    .graficoTemp{
-        position: relative; 
-        height:50vh !important;
-        width:auto !important;
-        align-items: center;
-    }
+
 }
 .row4{
     font-size: 0.6rem;
@@ -198,6 +172,7 @@ body{
 .row{
     overflow: visible;
 }
+
 .graficoTemp{
     position: relative; 
     height:50vh !important;

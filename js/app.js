@@ -13,7 +13,6 @@ function ObtenerNombreLocalidad(lat, long){
 }
 
 function Grafico(dias, tempMax, tempMin){
-//const ctx = document.getElementById('myChart');
 
 var ctx = document.getElementById('myChart').getContext('2d');
 if (window.grafica) {
@@ -101,34 +100,6 @@ class Ciudad{
     }
 }
 
-function nuvosidad(n, p){
-    if (n > 85){
-        if (p > 0){
-            return 'img/83.png'
-        } else
-        return 'img/43.png'
-    } else if (n > 60){
-        if (p > 0){
-            return 'img/73.png'
-        } else
-        return 'img/37.png'
-    } else if (n > 40){
-        if (p > 0){
-            return 'img/72.png'
-        } else
-        return 'img/25.png'
-    } else if (n > 20){
-        if (p > 0){
-            return 'img/74.png'
-        } else
-        return 'img/19.png'
-    }else if (n > 10){
-        return 'img/13.png'
-    } else {
-        return 'img/3.png'
-    }
-}
-
 // Calculo de la posicion del viento de grados
 function direccionDelViento(n){
     if ((n > 337.5) || (n < 22.5)){
@@ -151,7 +122,6 @@ function direccionDelViento(n){
     }
 }
 
-
 // Completa los dias de la semana en el pronostico semanal
 function CompletarDias(){
     var today = new Date();
@@ -162,6 +132,7 @@ function CompletarDias(){
         document.getElementById('NombreDia' + i).textContent = today.toLocaleString('es-LA', options)
     }
 }
+
 function json2array(json){
     var result = [];
     var keys = Object.keys(json);
@@ -231,7 +202,6 @@ function ObtenerPronostico(lat, long){
 
             console.log('img/' + x._icon + '.png')
             document.getElementById('icnDia').src = 'img/' + x._icon + '.png'
-            //nuvosidad(parseInt(nuveAhora))
 
             document.getElementById('tempDia1').textContent = x._dia[1]._tempMax + ' / ' + x._dia[1]._tempMin
             document.getElementById('iconDia1').src = 'img/' + data[x._dia[1]._weathercode].iconDia + '.png'
@@ -289,6 +259,8 @@ function obtenerPos(){
     }
 }
 
+// Devuelve verdadero si es de dia y Falso si es de noche para mostrar el icono correspondiente
+// Criterio Noche = Entre las 21 y las 6hs
 function EsDeDia(){
     let ahora=new Date(); 
     let hora=ahora.getHours();
@@ -299,13 +271,13 @@ function EsDeDia(){
     return dia;
 }
 
+// Muestra Pronostico del día seleccionado
 function mostrarPronostico(dia) {
     document.getElementById('iconDiaR').src = 'img/' + datos[parseInt(pronostico._dia[parseInt(dia)]._weathercode)].iconDia + '.png'
     document.getElementById('InfoDia').textContent = pronostico._dia[parseInt(dia)]._dia
     document.getElementById('tblMax').textContent = pronostico._dia[parseInt(dia)]._tempMax
     document.getElementById('tblMin').textContent = pronostico._dia[parseInt(dia)]._tempMin
-    document.getElementById('tblSale').textContent = moment(pronostico._dia[parseInt(dia)]._sunrise).format('LT');
-    document.getElementById('tblPone').textContent = moment(pronostico._dia[parseInt(dia)]._sunset).format('LT');
+    document.getElementById('tblSol').textContent = moment(pronostico._dia[parseInt(dia)]._sunrise).format('LT') + '  /  ' + moment(pronostico._dia[parseInt(dia)]._sunset).format('LT');
     document.getElementById('tblViento').textContent = pronostico._dia[parseInt(dia)]._velocidadViento + ' km/h - ' + direccionDelViento(pronostico._dia[parseInt(dia)-1]._direccionViento)
     if (pronostico._dia[parseInt(dia)]._precipitaciones == 0){
         document.getElementById('tblPrecip').textContent = 'No se registran'
@@ -362,7 +334,7 @@ function buscarLocalidad(){
         }
         )}
 
-
+// Agrega A Favorito
 function AddFav(x) {
     let j 
     j = JSON.parse(localStorage.getItem("favorito"))
@@ -429,15 +401,6 @@ function GuardarLocaldadLS(){
 }
 
 function ObtenerLocaldadLS(){
-
-    /*const favorito = {
-        name : "Fav",
-        lat : pronostico._latitud,
-        lon : pronostico._longitud,
-        localidad : ObtenerNombreLocalidad(parseFloat(pronostico._latitud), parseFloat(pronostico._longitud))
-      }
-      
-      window.localStorage.setItem("favorito", JSON.stringify(favorito)); */
       alert(JSON.parse(localStorage.getItem("favorito")))
 }
 
