@@ -36,3 +36,11 @@ Quede a medio camino de migrar el map al json para traer los datos del codigo  c
 Agregue un grafico de temperaturas (chart.js) y un Alert para confirmar grabacion y borrado de favoritos (SweetAlert)
 
 PENDIENTE: No se ve muy bien el grafico en el celu (tengo que trabajar en el responsive)
+
+ENTREGA FINAL
+Se agregó busqueda de localidades consumiendo servicio de https://nominatim.openstreetmap.org
+Consumo Alerta del SMN brindado a traves de https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml (Servicio RSS)
+De todas las alertas del momento, detecto si las coordenadas del usuario se encuentran dentro del poligono establecido por el SMN. Si esta dentro muestro un SweetAlert con el link a los detalles de los alertas.
+Tambien agregue un link a los alertas https://www.smn.gob.ar/avisos_a_muy_corto_plazo para buscar las alertas actuales y cambiar la localidad
+    NOTA: Tuve que instalar la extension Moesif CORS para que funcione. Estoy investigando por que se produce, pero creo que consumir servicios desde JS no seria lo conveniente, sino hacerlo desde el backend.
+Cambia el icono del clima actual a modo dia / noche dependiendo la hora
