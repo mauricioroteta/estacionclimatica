@@ -4,7 +4,7 @@ canvas.height = canvas.width * heightRatio;
 
 var retorno
 
-function ObtenerNombreLocalidad(lat, long){
+async function ObtenerNombreLocalidad(lat, long){
 
     fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + parseFloat(lat) + '&lon=' + parseFloat(long) + '&zoom=10&format=jsonv2')
     .then(response => response.json())
@@ -150,7 +150,7 @@ var pronostico;
 var datos;
 
 // Obtiene proostico del tiempo para las coordenadas
-function ObtenerPronostico(lat, long){
+async function ObtenerPronostico(lat, long){
     fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&daily=windspeed_10m_max,winddirection_10m_dominant,weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&hourly=temperature_2m,cloudcover&timezone=auto')
         .then(response => response.json())
         .then(json => {
@@ -300,7 +300,7 @@ function borrar() {
         options.forEach(o => o.remove());
     }
 
-function selectLocalidad(){
+async function selectLocalidad(){
         var combo = document.getElementById("localidades");
         var selected = combo.options[combo.selectedIndex].text;
 
@@ -313,7 +313,7 @@ function selectLocalidad(){
 )}
 
 
-function buscarLocalidad(){
+async function buscarLocalidad(){
         var selectobject = document.getElementById("localidades");
         for (var i = selectobject.length - 1; i >= 0; --i) {
                 selectobject.remove(i);
@@ -434,7 +434,12 @@ function getAlerta(){
     // URL SMN GeoRSS
     const RSS_URL = 'https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml';
 
-    fetch(RSS_URL)
+    fetch(RSS_URL, {
+        'mode': 'no-cors',
+        'headers': {
+            'Access-Control-Allow-Origin': '*',
+        }
+    })
     .then(response => response.text())
     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
     .then(data => {
