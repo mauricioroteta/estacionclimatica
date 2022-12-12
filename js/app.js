@@ -431,6 +431,21 @@ function getAlerta(){
     // URL SMN GeoRSS
     const RSS_URL = 'https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml';
 
+    // Prueba fallida para evitar el uso del plugin Moesif CORS
+    
+//    const form = new URLSearchParams();
+//    fetch(RSS_URL, {
+//        method: 'POST',
+//        mode: 'no-cors',
+//        headers: {
+//            'Content-Type': 'application/x-www-form-urlencoded',
+//            Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+//            'Accept-Language': 'en-GB',
+//            'Accept-Encoding': 'gzip, deflate',
+//            Connection: 'Keep-alive',
+//        },
+//        body: form,
+//    })*/
     fetch(RSS_URL)
     .then(response => response.text())
     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
