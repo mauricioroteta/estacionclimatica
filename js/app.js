@@ -15,7 +15,7 @@ async function ObtenerNombreLocalidad(lat, long){
     return retorno
 }
 
-function Grafico(dias, tempMax, tempMin){
+async function Grafico(dias, tempMax, tempMin){
 
 var ctx = document.getElementById('myChart').getContext('2d');
 if (window.grafica) {
@@ -458,7 +458,7 @@ function getAlerta(){
         // Items 
         const items = data.querySelectorAll("item");
 
-        if (items.length = 0)
+        if (items.length == 0 || items[0].childNodes.length < 9)
         {
             Swal.fire({
                 title: 'No hay Alertas!',
