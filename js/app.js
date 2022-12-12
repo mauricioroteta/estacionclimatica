@@ -1,3 +1,7 @@
+var canvas = document.getElementById('myChart');
+var heightRatio = 0.5;
+canvas.height = canvas.width * heightRatio;
+
 var retorno
 
 function ObtenerNombreLocalidad(lat, long){
