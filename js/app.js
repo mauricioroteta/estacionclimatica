@@ -1,5 +1,5 @@
 var canvas = document.getElementById('myChart');
-var heightRatio = 0.7;
+var heightRatio = 0.9;
 canvas.height = canvas.width * heightRatio;
 
 var retorno
