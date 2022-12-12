@@ -9,7 +9,6 @@ async function ObtenerNombreLocalidad(lat, long){
     fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + parseFloat(lat) + '&lon=' + parseFloat(long) + '&zoom=10&format=jsonv2')
     .then(response => response.json())
     .then(json => {
-        console.log(json)
         document.getElementById('localidad').textContent = json.name + " - " + json.address.state_district + ' - ' + json.address.country
         retorno = json.name + " - " + json.address.state_district + ' - ' + json.address.country
     })  
@@ -85,7 +84,7 @@ class Ciudad{
         fetch("/js/clima.json")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                
                 this._tiempoResumido = data[parseInt(j.current_weather.weathercode)].Descripcion;
             });
 
@@ -162,14 +161,12 @@ async function ObtenerPronostico(lat, long){
 
             Grafico(dias, tempMax, tempMin)
             
-            console.log(json)
 
-            console.log(x._icon)
 
             fetch("/js/clima.json")
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                
                 EsDeDia()?x.set_icon(data[x._weathercode].iconDia):x.set_icon(data[x._weathercode].iconNoche);
                 datos = data
 
@@ -204,7 +201,7 @@ async function ObtenerPronostico(lat, long){
 
             pronostico = x;
 
-            console.log('img/' + x._icon + '.png')
+            
             document.getElementById('icnDia').src = 'img/' + x._icon + '.png'
 
             document.getElementById('tempDia1').textContent = x._dia[1]._tempMax + ' / ' + x._dia[1]._tempMin
@@ -291,7 +288,7 @@ function mostrarPronostico(dia) {
         fetch("/js/clima.json")
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
+            
             document.getElementById('pronosticoDia').textContent = data[pronostico._dia[parseInt(dia)]._weathercode].Descripcion;})
 }
 
@@ -434,16 +431,11 @@ function getAlerta(){
     // URL SMN GeoRSS
     const RSS_URL = 'https://ssl.smn.gob.ar/feeds/avisocorto_GeoRSS.xml';
 
-    fetch(RSS_URL, {
-        'mode': 'no-cors',
-        'headers': {
-            'Access-Control-Allow-Origin': '*',
-        }
-    })
+    fetch(RSS_URL)
     .then(response => response.text())
     .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
     .then(data => {
-        console.log(data);
+    
 
         // Coordenadas locales (solo positivas y long + lat)
         var pt = turf.point([pronostico._longitud*-1, pronostico._latitud*-1]);
@@ -493,7 +485,6 @@ function getAlerta(){
                     confirmButtonText: 'Ok'
                   })  
             }else{
-                console.log()
             }
         }
         }
